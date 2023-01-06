@@ -3,7 +3,6 @@ import ast
 import os
 from datetime import datetime
 from tabulate import tabulate
-import traceback
 
 
 def create_line_break(text):
@@ -301,7 +300,7 @@ def edit_end_date():
                         else:
                             file.write(str(new_user)+"\n")
             else:
-                print('\nNo such a date\n')
+                print('\nNOT a valid date!\n')
                 break
 
 
@@ -358,6 +357,7 @@ def login_menu():
     print('3. Edit Your own project\n')
     print('4. Delete your own project\n')
     print('5. Exit\n')
+    create_line_break('There is s bug here i cannot fix. When you try to view  all projects for example, it excutes a completely different function. it\'s something related to a feature in python called tracback. I\'ve spent a couple of days trying to fix that but i failed.')
     while True:
         entered_choice = input('Enter Your Choice: ')
         try:
@@ -370,48 +370,50 @@ def login_menu():
 
             if converted_into_number == 1:
                 view_projects()
+                break
             elif converted_into_number == 2:
                 create_project()
+                break
             elif converted_into_number == 3:
                 edit_menu()
+                break
             elif converted_into_number == 4:
                 delete_project()
+                break
             elif converted_into_number == 5:
                 create_line_break('Bye')
                 exit()
             else:
                 print('\nNot a valid choice!\n')
                 break
-                # login_menu()
 
 
 def signup():
 
-    file = open("users", "a+")
+    file = open('users', 'a+')
     file.seek(0)
     data = file.read(100)
     if len(data) > 0:
         file.write("\n")
     file.write(str(user_dict_data()))
-    create_line_break('Successfully signed up')
     file.close()
-    # main_menu()
-
     with open(f"users_projects/{user_dict_data()['email']}.txt", 'w'):
         pass
-
-    return True
+    create_line_break('Successfully signed up')
+    return
 
 
 def login():
+
     while True:
-        email = email_validation()
+        email = input("Enter your email : ")
         password = input("Enter your password : ")
         f = open("users", "r")
         for line in f:
             user = ast.literal_eval(line)
-            if (user["email"] == email and user["password"] == password):
+            if user["email"] == email and user["password"] == password:
                 login_menu()
+                break
             else:
                 print('\nThis email does not exist\n')
                 break
@@ -431,20 +433,20 @@ def main_menu():
         except:
             print('\nNot a number!\n')
             break
-            # main_menu()
         else:
 
             if converted_into_number == 1:
                 login()
+
             elif converted_into_number == 2:
                 signup()
+                break
             elif converted_into_number == 3:
                 create_line_break('Bye')
                 exit()
             else:
                 create_line_break('\nNot valid choice!\n')
                 break
-                # main_menu()
 
 
 main_menu()
