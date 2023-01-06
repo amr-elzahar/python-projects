@@ -357,7 +357,7 @@ def login_menu():
     print('3. Edit Your own project\n')
     print('4. Delete your own project\n')
     print('5. Exit\n')
-    create_line_break('There is s bug here i cannot fix. When you try to view  all projects for example, it excutes a completely different function. it\'s something related to a feature in python called tracback. I\'ve spent a couple of days trying to fix that but i failed.')
+    create_line_break('There is s bug here i cannot fix. When you try to view  all projects for example, it excutes a completely different function. it\'s something related to a feature in python called tracback. I\'ve spent a couple of days trying to fix that but i failed. Every function of this menu does its own main role of creating or editing or deleting and so on but SEPARATELT. The error comes up when i combined all of them in the same file.')
     while True:
         entered_choice = input('Enter Your Choice: ')
         try:
